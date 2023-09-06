@@ -1,6 +1,6 @@
-# Die Öffnungszeiten und Adressen der Stadtteilbibliotheken und Zweigstellen der Leipziger Städtischen Bibliotheken
+# Öffnungszeiten
 
-# Stadtbibliothek
+# Bibliothek Stadtbibliothek
 - **Straße:** Wilhelm-Leuschner-Platz 10/11
 - **PLZ:** 04107 Leipzig
 - **Stadtbezirk:** Mitte
