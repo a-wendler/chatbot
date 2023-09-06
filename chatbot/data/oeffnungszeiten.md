@@ -8,7 +8,7 @@
 - **Email:** stadtbib@leipzig.de
 - **Link:** [Leipziger Stadtbibliothek](www.stadtbibliothek.leipzig.de/unsere-bibliotheken/leipziger-stadtbibliothek/)
 - **Telefon:** 0341 1235341
-- **Öffnungszeiten:**
+- **Öffnungszeiten Stadtbibliothek:**
   - Montag 10:00-19:00 Uhr
   - Dienstag 10:00-19:00 Uhr
   - Mittwoch 10:00-19:00 Uhr, ohne Fachpersonal 10:00-13:00 Uhr
@@ -24,7 +24,7 @@
 - **Email:** bibliothek.boehlitz-ehrenberg@leipzig.de
 - **Link:** [Bibliothek Böhlitz-Ehrenberg](www.stadtbibliothek.leipzig.de/unsere-bibliotheken/bibliothek-boehlitz-ehrenberg/)
 - **Telefon:** 0341 1235200
-- **Öffnungszeiten:**
+- **Öffnungszeiten Bibliothek Böhlitz-Ehrenberg:**
   - Montag 14:00-18:00 Uhr
   - Dienstag 10:00-13:00 Uhr und 14:00-19:00 Uhr
   - Donnerstag 10:00-13:00 Uhr und 14:00-19:00 Uhr
@@ -38,7 +38,7 @@
 - **Email:** bibliothek.gohlis@leipzig.de
 - **Link:** [Bibliothek Gohlis](www.stadtbibliothek.leipzig.de/unsere-bibliotheken/bibliothek-gohlis/)
 - **Telefon:** 0341 1235255
-- **Öffnungszeiten:**
+- **Öffnungszeiten Gohlis:**
   - Montag 10:00-19:00 Uhr
   - Dienstag 10:00-19:00 Uhr
   - Mittwoch 15:00-19:00 Uhr
@@ -53,7 +53,7 @@
 - **Email:** bibliothek.gruenau-mitte@leipzig.de
 - **Link:** [Bibliothek Grünau-Mitte](www.stadtbibliothek.leipzig.de/unsere-bibliotheken/bibliothek-gruenau-mitte/)
 - **Telefon:** 0341 1235228
-- **Öffnungszeiten:**
+- **Öffnungszeiten Bibliothek Grünau-Mitte:**
   - Montag 14:00-18:00 Uhr, Selbstbedienung 10:00-13:00 Uhr
   - Dienstag 13:00-15:00 Uhr, Selbstbedienung 10:00-13:00 Uhr
   - Mittwoch 13:00-18:00 Uhr
