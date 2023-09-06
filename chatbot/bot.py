@@ -15,7 +15,7 @@ if "messages" not in st.session_state.keys(): # Initialize the chat message hist
 @st.cache_resource(show_spinner=False)
 def load_data():
     with st.spinner(text="Die LSB-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
-        reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
+        reader = SimpleDirectoryReader(input_dir="chatbot/data", recursive=True)
         docs = reader.load_data()
         service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
