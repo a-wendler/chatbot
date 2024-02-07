@@ -5,19 +5,19 @@ import openai
 from llama_index import SimpleDirectoryReader
 
 openai.api_key = st.secrets.openai_key
-st.header("Der LSB-Service-Chat 💬 📚")
+st.header("Der Loga-Service-Chat 💬 ⌛ ⌚")
 
 if "messages" not in st.session_state.keys(): # Initialize the chat message history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Was möchten Sie über die Leipziger Städtischen Bibliotheken wissen?"}
+        {"role": "assistant", "content": "Was möchten Sie über das Personalportal Loga wissen?"}
     ]
 
 @st.cache_resource(show_spinner=True)
 def load_data():
-    with st.spinner(text="Die LSB-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
-        reader = SimpleDirectoryReader(input_dir="data", recursive=True)
+    with st.spinner(text="Die Loga-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
+        reader = SimpleDirectoryReader(input_dir="loga-data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Du bist Kundenberater für das Personalportal Loga. In dem Personalportal können Mitarbeiterinnen und Mitarbeiter der Stadt Leipzig ihre Arbeitszeit erfassen, Anträge auf Urlaub und Zeitausgleich stellen. Auch Krankmeldungen werden im Personalportal Log erfasst. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über das Personalportal, die nicht auf Fakten basieren. Wenn Du eine Information über das Personalportal nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
