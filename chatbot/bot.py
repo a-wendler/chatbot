@@ -1,10 +1,15 @@
 import streamlit as st
 from llama_index import VectorStoreIndex, ServiceContext, Document
-from llama_index.llms import OpenAI
-import openai
+from llama_index.llms import Perplexity
+# import openai
 from llama_index import SimpleDirectoryReader
 
-openai.api_key = st.secrets.openai_key
+# openai.api_key = st.secrets.openai_key
+pplx_api_key = st.secrets.pplx_key
+llm = Perplexity(
+    api_key=pplx_api_key, model="pplx-70b-chat", temperature=0.4, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer in der Sprache, in der die Frage gestellt wurde."
+)
+
 st.header("Der LSB-Service-Chat 💬 📚")
 
 if "messages" not in st.session_state.keys(): # Initialize the chat message history
@@ -17,7 +22,7 @@ def load_data():
     with st.spinner(text="Die LSB-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
         reader = SimpleDirectoryReader(input_dir="chatbot/data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."))
+        service_context = ServiceContext.from_defaults(llm)
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
