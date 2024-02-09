@@ -7,7 +7,7 @@ from llama_index import SimpleDirectoryReader
 # openai.api_key = st.secrets.openai_key
 pplx_api_key = st.secrets.pplx_key
 llm = Perplexity(
-    api_key=pplx_api_key, model="pplx-70b-chat", temperature=0.4, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."
+    api_key=pplx_api_key, model="pplx-70b-chat", temperature=0.4, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte auf Deutsch."
 )
 
 st.header("Der LSB-Service-Chat 💬 📚")
