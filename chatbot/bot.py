@@ -22,13 +22,13 @@ def load_data():
     with st.spinner(text="Die LSB-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
         reader = SimpleDirectoryReader(input_dir="chatbot/data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm)
+        service_context = ServiceContext.from_defaults(llm=llm)
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
 index = load_data()
-# chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
-chat_engine = index.as_chat_engine(chat_mode="context", verbose=True)
+chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
+# chat_engine = index.as_chat_engine(chat_mode="context", verbose=True)
 
 if prompt := st.chat_input("Ihre Frage"): # Prompt for user input and save to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
