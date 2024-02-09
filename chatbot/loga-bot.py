@@ -3,6 +3,7 @@ from llama_index import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
+import hmac
 
 openai.api_key = st.secrets.openai_key
 st.header("Der Loga-Service-Chat 💬 ⌛ ⌚")
@@ -21,9 +22,36 @@ def load_data():
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store the password.
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show input for password.
+    st.text_input(
+        "Password", type="password", on_change=password_entered, key="password"
+    )
+    if "password_correct" in st.session_state:
+        st.error("😕 Password incorrect")
+    return False
+
+
+if not check_password():
+    st.stop()  # Do not continue if check_password is not True.
+
 index = load_data()
-# chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
-chat_engine = index.as_chat_engine(chat_mode="context", verbose=True)
+chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
+# chat_engine = index.as_chat_engine(chat_mode="context", verbose=True)
 
 if prompt := st.chat_input("Ihre Frage"): # Prompt for user input and save to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
