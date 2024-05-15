@@ -1,8 +1,7 @@
 import streamlit as st
-from llama_index import VectorStoreIndex, ServiceContext, Document
-from llama_index.llms import OpenAI
+from llama_index.core import VectorStoreIndex, Settings, SimpleDirectoryReader
+from llama_index.llms.openai import OpenAI
 import openai
-from llama_index import SimpleDirectoryReader
 
 openai.api_key = st.secrets.openai_key
 st.header("Der LSB-Service-Chat 💬 📚")
@@ -17,8 +16,10 @@ def load_data():
     with st.spinner(text="Die LSB-Informationen werden indiziert. Das dauert nur ein paar Augenblicke."):
         reader = SimpleDirectoryReader(input_dir="chatbot/data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst. Antworte immer auf Deutsch."))
-        index = VectorStoreIndex.from_documents(docs, service_context=service_context)
+
+        Settings.llm = OpenAI(model="gpt-4o", temperature=0.2, system_prompt=f"Du bist ein Experte für die Leipziger Städtischen Bibliotheken. Du hilfst Nutzerinnen und Nutzern dabei, die Bibliothek zu benutzen. Du beantwortest Fragen zum Ausleihbetrieb, zu den Standorten und den verfügbaren Services. Deine Antworten sollen auf Fakten basieren. Halluziniere keine Informationen über die Bibliotheken, die nicht auf Fakten basieren. Wenn Du eine Information über die Bibliotheken nicht hast, sage den Nutzenden, dass Du Ihnen nicht weiterhelfen kannst.")
+
+        index = VectorStoreIndex.from_documents(docs)
         return index
 
 index = load_data()
