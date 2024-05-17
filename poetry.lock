@@ -565,16 +565,6 @@ files = [
 ]
 
 [[package]]
-name = "docx2txt"
-version = "0.8"
-description = "A pure python-based utility to extract text and images from docx files."
-optional = false
-python-versions = "*"
-files = [
-    {file = "docx2txt-0.8.tar.gz", hash = "sha256:2c06d98d7cfe2d3947e5760a57d924e3ff07745b379c8737723922e7009236e5"},
-]
-
-[[package]]
 name = "exceptiongroup"
 version = "1.2.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -3495,4 +3485,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "65b177a27c3c7726eb46044aea88cdfd58fbac19ef143d47f1d15952fc6504ad"
+content-hash = "73b04380a8f18db6f22126ce32d4c36c99b7dd2441c97459ad7dd374a3299cc6"
